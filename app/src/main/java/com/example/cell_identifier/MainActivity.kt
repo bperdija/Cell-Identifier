@@ -1,6 +1,9 @@
 package com.example.cell_identifier
 
 import android.os.Bundle
+import android.util.TypedValue
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -52,31 +55,47 @@ class MainActivity : AppCompatActivity() {
         fragmentAdapter = FragmentAdapter(this, fragments)
         viewPager2.adapter = fragmentAdapter
 
+        // Prevent swiping between fragments
+        viewPager2.isUserInputEnabled = false
+
+        // Adjust tabs on the bottom
         tabCS = TabLayoutMediator.TabConfigurationStrategy { tab: TabLayout.Tab, position: Int ->
-            tab.text = tabNames[position]
+            val customTab = layoutInflater.inflate(R.layout.layout_tabs, null)
+            val tabIcon = customTab.findViewById<ImageView>(R.id.tabIcon)
+            val tabText = customTab.findViewById<TextView>(R.id.tabText)
+
+            // Set icon and text based on position
+            tabIcon.setImageResource(getTabIcon(position))
+            tabText.text = tabNames[position]
+
+            // Calculate text size based on screen width
+            val screenWidth = resources.displayMetrics.widthPixels
+            val textSize = screenWidth / 100f
+            tabText.setTextSize(TypedValue.COMPLEX_UNIT_SP, textSize)
+
+            // Set custom view for the tab
+            tab.customView = customTab
         }
+
         tabLM = TabLayoutMediator(tabLayout, viewPager2, tabCS)
         tabLM.attach()
+
+    }
+
+    // Set icons on the bottom of the screen
+    fun getTabIcon(position: Int): Int {
+        when (position) {
+            0 -> return R.drawable.ic_home
+            1 -> return R.drawable.ic_search
+            2 -> return R.drawable.ic_add
+            3 -> return R.drawable.ic_book
+            4 -> return R.drawable.ic_person
+            else -> return R.drawable.ic_search
+        }
     }
 
     override fun onDestroy() {
         super.onDestroy()
         tabLM.detach()
-    }
-
-    @Composable
-    fun Greeting(name: String, modifier: Modifier = Modifier) {
-        Text(
-            text = "Hello $name!",
-            modifier = modifier
-        )
-    }
-
-    @Preview(showBackground = true)
-    @Composable
-    fun GreetingPreview() {
-        Cell_IdentifierTheme {
-            Greeting("Android")
-        }
     }
 }
