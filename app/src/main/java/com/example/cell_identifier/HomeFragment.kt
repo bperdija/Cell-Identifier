@@ -33,6 +33,7 @@ class HomeFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_home, container, false)
         recommendedRecyclerView = view.findViewById(R.id.recommendedRecyclerView)
+
 //        recommendedAdapter = RecommendedAdapter(slidesList)
 //        recommendedRecyclerView.setHasFixedSize(true)
 //        recommendedRecyclerView.layoutManager =

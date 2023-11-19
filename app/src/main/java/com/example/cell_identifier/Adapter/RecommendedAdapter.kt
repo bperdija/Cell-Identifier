@@ -11,7 +11,8 @@ import com.example.cell_identifier.R
 //class RecommendedAdapter(private val slidesList: List<RecommendedSlide>) :
 //    RecyclerView.Adapter<RecommendedAdapter.RecommendedViewHolder>() {
 //
-//    inner class RecommendedViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+//    inner class RecommendedViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
+//    {
 //        var pictureImageView: ImageView = itemView.findViewById(R.id.picture)
 //        val nameTextView: TextView = itemView.findViewById(R.id.nameTextView)
 //        val numberTextView: TextView = itemView.findViewById(R.id.numberTextView)

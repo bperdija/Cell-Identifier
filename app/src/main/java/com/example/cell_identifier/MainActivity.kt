@@ -1,6 +1,7 @@
 package com.example.cell_identifier
 
 import android.os.Bundle
+import android.util.TypedValue
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -54,6 +55,9 @@ class MainActivity : AppCompatActivity() {
         fragmentAdapter = FragmentAdapter(this, fragments)
         viewPager2.adapter = fragmentAdapter
 
+        // Prevent swiping between fragments
+        viewPager2.isUserInputEnabled = false
+
         // In your MainActivity.kt
 
         tabCS = TabLayoutMediator.TabConfigurationStrategy { tab: TabLayout.Tab, position: Int ->
@@ -64,6 +68,11 @@ class MainActivity : AppCompatActivity() {
             // Set icon and text based on position
             tabIcon.setImageResource(getTabIcon(position))
             tabText.text = tabNames[position]
+
+            // Calculate text size based on screen width
+            val screenWidth = resources.displayMetrics.widthPixels
+            val textSize = screenWidth / 100f
+            tabText.setTextSize(TypedValue.COMPLEX_UNIT_SP, textSize)
 
             // Set custom view for the tab
             tab.customView = customTab
@@ -88,21 +97,5 @@ class MainActivity : AppCompatActivity() {
     override fun onDestroy() {
         super.onDestroy()
         tabLM.detach()
-    }
-
-    @Composable
-    fun Greeting(name: String, modifier: Modifier = Modifier) {
-        Text(
-            text = "Hello $name!",
-            modifier = modifier
-        )
-    }
-
-    @Preview(showBackground = true)
-    @Composable
-    fun GreetingPreview() {
-        Cell_IdentifierTheme {
-            Greeting("Android")
-        }
     }
 }
