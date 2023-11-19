@@ -58,8 +58,7 @@ class MainActivity : AppCompatActivity() {
         // Prevent swiping between fragments
         viewPager2.isUserInputEnabled = false
 
-        // In your MainActivity.kt
-
+        // Adjust tabs on the bottom
         tabCS = TabLayoutMediator.TabConfigurationStrategy { tab: TabLayout.Tab, position: Int ->
             val customTab = layoutInflater.inflate(R.layout.layout_tabs, null)
             val tabIcon = customTab.findViewById<ImageView>(R.id.tabIcon)
@@ -83,6 +82,7 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    // Set icons on the bottom of the screen
     fun getTabIcon(position: Int): Int {
         when (position) {
             0 -> return R.drawable.ic_home

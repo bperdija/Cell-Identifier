@@ -34,21 +34,6 @@ class HomeFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_home, container, false)
         recommendedRecyclerView = view.findViewById(R.id.recommendedRecyclerView)
 
-//        recommendedAdapter = RecommendedAdapter(slidesList)
-//        recommendedRecyclerView.setHasFixedSize(true)
-//        recommendedRecyclerView.layoutManager =
-//            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-//        recommendedRecyclerView.adapter = recommendedAdapter
-
-        /// Option 1 -------------
-//        recommendedAdapter = RecommendedAdapter(slidesList) { position ->
-//            Log.d("HomeFragment", "Item at position $position clicked")
-//        }
-//        recommendedRecyclerView.setHasFixedSize(true)
-//        recommendedRecyclerView.layoutManager =
-//            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-//        recommendedRecyclerView.adapter = recommendedAdapter
-
         /// Option 2 -------------
         recommendedAdapter = RecommendedAdapter(slidesList) { clickedSlide ->
             // Handle click on the item
