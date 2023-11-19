@@ -1,0 +1,26 @@
+<!-- res/layout/layout_tabs.xml -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:gravity="center">
+
+    <ImageView
+        android:id="@+id/tabIcon"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_gravity="center"
+        android:src="@drawable/ic_plant"
+        android:contentDescription="Tab Icon"
+        android:layout_marginBottom="3dp"
+        android:layout_marginTop="5dp"/>
+
+    <TextView
+        android:id="@+id/tabText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Home"
+        android:textSize="14sp"
+        android:textColor="@color/black"
+        android:layout_marginBottom="3dp"/>
+</LinearLayout>

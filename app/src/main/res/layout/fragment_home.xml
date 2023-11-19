@@ -1,5 +1,322 @@
-<?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-</androidx.constraintlayout.widget.ConstraintLayout>
+    android:layout_height="match_parent"
+    android:background="#FFFFFF">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Gradient Rectangle at the top -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="285dp"
+            android:background="@drawable/home_gradient_rectangle">
+
+            <TextView
+                android:id="@+id/welcomeText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="25dp"
+                android:text="Welcome [User]!"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <!-- Smaller Rounded White Box -->
+
+            <EditText
+                android:id="@+id/searchEditText"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_below="@id/welcomeText"
+                android:layout_marginStart="22dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="20dp"
+                android:background="@android:drawable/editbox_background"
+                android:drawableLeft="@drawable/ic_search"
+                android:drawablePadding="8dp"
+                android:hint="Search Slides" />
+
+            <RelativeLayout
+                android:id="@+id/slideOfDayItem"
+                android:layout_width="match_parent"
+                android:layout_height="162dp"
+                android:layout_below="@id/welcomeText"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="57dp"
+                android:layout_marginEnd="25dp"
+                android:background="@drawable/rounded_background"
+                android:elevation="10dp"
+                android:padding="16dp">
+
+
+                <!-- Image on the left -->
+                <ImageView
+                    android:id="@+id/slideImage"
+                    android:layout_width="130dp"
+                    android:layout_height="130dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:background="@drawable/rounded_background"
+                    android:clipToOutline="true"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/testing" />
+
+                <!-- Slide of the Day Text -->
+                <TextView
+                    android:id="@+id/slideOfDayText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_toEndOf="@id/slideImage"
+                    android:text="Slide of the Day"
+                    android:textStyle="bold"
+                    android:textColor="@color/secondaryBlue"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/slideOfDayName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="-1dp"
+                    android:layout_toEndOf="@id/slideImage"
+                    android:layout_below="@id/slideOfDayText"
+                    android:text="Human Liver Tissue"
+                    android:textSize="13sp" />
+
+                <TextView
+                    android:id="@+id/slideOfDayCategory"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_toEndOf="@id/slideImage"
+                    android:layout_below="@id/slideOfDayName"
+                    android:background="@drawable/rounded_background2"
+                    android:backgroundTint="@color/lightGray"
+                    android:text="Human"
+                    android:paddingLeft="9dp"
+                    android:paddingRight="9dp"
+                    android:paddingTop="3dp"
+                    android:paddingBottom="3.2dp"
+                    android:textSize="12sp"
+                    android:layout_marginTop="3dp"/>
+
+                <TextView
+                    android:id="@+id/slideOfDayCategory2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_toEndOf="@id/slideOfDayCategory"
+                    android:layout_below="@id/slideOfDayName"
+                    android:background="@drawable/rounded_background2"
+                    android:backgroundTint="@color/lightGray"
+                    android:text="Cell"
+                    android:paddingLeft="9dp"
+                    android:paddingRight="9dp"
+                    android:paddingTop="3dp"
+                    android:paddingBottom="3.2dp"
+                    android:textSize="12sp"
+                    android:layout_marginTop="3dp"/>
+
+                <TextView
+                    android:id="@+id/slideDescription"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_toEndOf="@id/slideImage"
+                    android:layout_below="@id/slideOfDayCategory"
+                    android:text="Your liver processes blood, breaking down the nutrients and chemicals ..."
+                    android:textSize="13sp"
+                    android:layout_marginTop="2dp"/>
+
+                <TextView
+                    android:id="@+id/slideNumber"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_toEndOf="@id/slideImage"
+                    android:layout_below="@id/slideDescription"
+                    android:text="Slide: #145"
+                    android:layout_alignParentEnd="true"
+                    android:gravity="right"
+                    android:textColor="@color/mainBlue"
+                    android:textStyle="bold"
+                    android:textSize="14sp" />
+            </RelativeLayout>
+        </RelativeLayout>
+
+        <!-- Categories -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="25dp"
+            android:paddingEnd="25dp"
+            android:paddingBottom="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/categoriesText"
+                android:text="Categories"
+                android:textSize="23sp"
+                android:textColor="@color/mainBlue"
+                android:textStyle="bold"/>
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:id="@+id/categoryMenuIcon"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="8dp"
+                android:src="@drawable/ic_three_bars"
+                android:contentDescription="Menu Icon"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_below="@id/categoriesText"
+                android:layout_marginTop="18dp"
+                android:layout_marginLeft="-10dp"
+                android:layout_marginRight="-10dp"
+                android:weightSum="4">
+
+                <LinearLayout
+                    android:id="@+id/peopleCircle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_weight="1"
+                    android:gravity="center">
+
+                    <ImageView
+                        android:layout_width="75dp"
+                        android:layout_height="75dp"
+                        android:padding="14dp"
+                        android:background="@drawable/circle_background"
+                        android:src="@drawable/ic_human"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="3dp"
+                        android:text="People"
+                        android:textSize="12sp"
+                        android:textColor="#000000"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/animalCircle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_weight="1"
+                    android:gravity="center">
+
+                    <ImageView
+                        android:layout_width="75dp"
+                        android:layout_height="75dp"
+                        android:padding="20dp"
+                        android:background="@drawable/circle_background"
+                        android:src="@drawable/ic_animal"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="3dp"
+
+                        android:text="Animals"
+                        android:textSize="12sp"
+                        android:textColor="#000000"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/plantCircle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_weight="1"
+                    android:gravity="center">
+
+                    <ImageView
+                        android:layout_width="75dp"
+                        android:layout_height="75dp"
+                        android:padding="20dp"
+                        android:background="@drawable/circle_background"
+                        android:src="@drawable/ic_plant"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="3dp"
+                        android:text="Plants"
+                        android:textSize="12sp"
+                        android:textColor="#000000"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/bacteriaCircle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_weight="1"
+                    android:gravity="center">
+
+                    <ImageView
+                        android:layout_width="75dp"
+                        android:layout_height="75dp"
+                        android:padding="19dp"
+                        android:background="@drawable/circle_background"
+                        android:src="@drawable/ic_bacteria"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="3dp"
+                        android:text="Bacteria"
+                        android:textSize="12sp"
+                        android:textColor="#000000"/>
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+
+
+        </RelativeLayout>
+
+        <!-- Recommended Text -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="25dp"
+            android:paddingEnd="25dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/recommendedText"
+                android:text="Recommended"
+                android:textSize="23sp"
+                android:textColor="@color/mainBlue"
+                android:textStyle="bold"/>
+        </RelativeLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="-10dp"
+            android:id="@+id/recommendedRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="25dp"
+            android:paddingEnd="25dp"
+            android:paddingBottom="16dp"
+            android:orientation="horizontal"/>
+
+    </LinearLayout>
+</ScrollView>
