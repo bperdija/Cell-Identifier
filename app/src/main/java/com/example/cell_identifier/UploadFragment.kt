@@ -12,7 +12,7 @@ import androidx.fragment.app.Fragment
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class UploadFragment:Fragment() {
-    private lateinit var btnUpload: Button
+    private lateinit var btnUpload: FloatingActionButton
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_upload, container, false)
