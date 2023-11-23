@@ -1,0 +1,8 @@
+<!-- circle_background.xml -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="oval">
+    <gradient
+        android:startColor="#5759A7"
+        android:endColor="#003BAA"
+        android:angle="90"/>
+</shape>
