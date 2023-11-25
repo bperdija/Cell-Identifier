@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_gravity="center"
+    android:layout_margin="5dp"
+    app:cardCornerRadius="4dp"
+    app:cardElevation="3dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white">
+
+        <ImageView
+            android:id="@+id/slide_card_image"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:src="@drawable/tree"/>
+        <TextView
+            android:id="@+id/slide_card_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Name:"
+            android:layout_margin="3dp"
+            android:padding="4dp"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:layout_toRightOf="@id/slide_card_image"/>
+        <TextView
+            android:id="@+id/slide_card_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            android:padding="4dp"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:text="Slide Name"
+            android:layout_toRightOf="@id/slide_card_label"/>
+        <TextView
+            android:id="@+id/slide_category_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Category:"
+            android:layout_toRightOf="@id/slide_card_image"
+            android:layout_below="@id/slide_card_name"
+            android:layout_margin="3dp"
+            android:padding="4dp"
+            android:textSize="15sp"
+            android:textStyle="bold"/>
+        <TextView
+            android:id="@+id/slide_category"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            android:padding="4dp"
+            android:text="Category"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:layout_toRightOf="@id/slide_category_label"
+            android:layout_below="@id/slide_card_name"/>
+        <TextView
+            android:id="@+id/slide_description_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Description:"
+            android:layout_margin="3dp"
+            android:padding="4dp"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:layout_below="@id/slide_category_label"
+            android:layout_toRightOf="@id/slide_card_image"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="This is a description of the slide."
+            android:layout_margin="3dp"
+            android:padding="4dp"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:layout_below="@id/slide_description_label"
+            android:layout_toRightOf="@id/slide_card_image"/>
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>
