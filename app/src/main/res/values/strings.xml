@@ -1,4 +1,26 @@
 <resources>
     <string name="app_name">Cell_Identifier</string>
     <string name="search_hist">History</string>
+    <string name="categories">Categories</string>
+    <string name="category">Category:</string>
+    <string name="slide_name">Slide Name</string>
+    <string name="my_slides">My Slides</string>
+    <string name="comment">Comment</string>
+    <string name="add_description">Describe your slide</string>
+    <string name="description">Description:</string>
+    <string name="name">Name:</string>
+
+<!--    Buttons-->
+    <string name="save">SAVE</string>
+    <string name="cancel">CANCEL</string>
+    <string name="add_image">ADD IMAGE</string>
+    <string name="new_slide">NEW SLIDE</string>
+
+<!--    Slide categories-->
+    <string-array name="categories">
+        <item>People</item>
+        <item>Animals</item>
+        <item>Plants</item>
+        <item>Bacteria</item>
+    </string-array>
 </resources>

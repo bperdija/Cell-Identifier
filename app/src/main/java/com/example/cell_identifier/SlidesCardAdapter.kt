@@ -1,34 +1,36 @@
 package com.example.cell_identifier
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.cell_identifier.databinding.SlidesCardBinding
+import com.squareup.picasso.Picasso
 
-class SlidesCardAdapter(private val slides: List<SlideInfo>): RecyclerView.Adapter<SlidesCardAdapter.SlidesViewHolder>(){
-    inner class SlidesViewHolder(view: View):RecyclerView.ViewHolder(view){
-        var slideCardImageView: ImageView = view.findViewById(R.id.slide_card_image)
-        val slideCardNameView: TextView = view.findViewById(R.id.slide_card_name)
-        val slideCategoryView: TextView = view.findViewById(R.id.slide_category)
+class SlidesCardAdapter(private val slides: java.util.ArrayList<SlideInfo>): RecyclerView.Adapter<SlidesCardAdapter.SlidesViewHolder>(){
+    class SlidesViewHolder(val binding: SlidesCardBinding):RecyclerView.ViewHolder(binding.root){
 
     }
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): SlidesCardAdapter.SlidesViewHolder {
-        val itemView =
-            LayoutInflater.from(parent.context)
-                .inflate(R.layout.slides_card, parent, false)
-        return SlidesViewHolder(itemView)
+    ): SlidesViewHolder {
+        return SlidesViewHolder(SlidesCardBinding.inflate(LayoutInflater.from(parent.context), parent, false))
     }
 
-    override fun onBindViewHolder(holder: SlidesCardAdapter.SlidesViewHolder, position: Int) {
-       val currentItem = slides[position]
-        holder.slideCardImageView.setImageResource(currentItem.image)
-        holder.slideCardNameView.text = currentItem.name
-        holder.slideCategoryView.text = currentItem.category
+    @SuppressLint("SetTextI18n")
+    override fun onBindViewHolder(holder: SlidesViewHolder, position: Int) {
+        val currentItem = slides[position]
+        println("Mandu: Check $currentItem")
+        holder.apply {
+            binding.apply {
+                slideCardName.text = "Name: ${currentItem.slideName}"
+                slideCardCategory.text = "Category: ${currentItem.category}"
+                slideCardDescription.text = currentItem.slideComment
+
+                Picasso.get().load(currentItem.imageUri).into(slideCardImage)
+            }
+        }
     }
 
     override fun getItemCount(): Int {
