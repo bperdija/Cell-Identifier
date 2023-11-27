@@ -44,7 +44,7 @@ class ProfileFragment : Fragment() {
         bio = view.findViewById(R.id.etBio)
 
         saveButton.setOnClickListener {
-            saveProfile(uid)
+            //saveProfile(uid)
         }
 
         // Set default image URI
@@ -53,22 +53,22 @@ class ProfileFragment : Fragment() {
         return view
     }
 
-    private fun saveProfile(uid: String?) {
-        val firstName = fName.text.toString()
-        val lastName = lName.text.toString()
-        val bio = bio.text.toString()
-
-        val user = User(firstName, lastName, bio)
-        if (uid != null) {
-            databaseReference.child(uid).setValue(user).addOnCompleteListener {
-                if (it.isSuccessful) {
-                    uploadProfilePic()
-                } else {
-                    Toast.makeText(context, "Failed to update profile", Toast.LENGTH_SHORT).show()
-                }
-            }
-        }
-    }
+//    private fun saveProfile(uid: String?) {
+//        val firstName = fName.text.toString()
+//        val lastName = lName.text.toString()
+//        val bio = bio.text.toString()
+//
+//        val user = User(firstName, lastName, bio, age, school, role, year, field)
+//        if (uid != null) {
+//            databaseReference.child(uid).setValue(user).addOnCompleteListener {
+//                if (it.isSuccessful) {
+//                    uploadProfilePic()
+//                } else {
+//                    Toast.makeText(context, "Failed to update profile", Toast.LENGTH_SHORT).show()
+//                }
+//            }
+//        }
+//    }
 
     private fun uploadProfilePic() {
         storageReference = FirebaseStorage.getInstance().getReference("Users/${auth.currentUser?.uid}")
