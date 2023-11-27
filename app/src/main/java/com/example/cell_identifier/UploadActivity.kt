@@ -5,9 +5,12 @@ import android.content.pm.PackageManager
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Gravity
+import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.Spinner
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
@@ -24,6 +27,7 @@ class UploadActivity : AppCompatActivity() {
     private lateinit var cancelButton: Button
     private lateinit var addImageButton: Button
     private lateinit var categorySpinner: Spinner
+    private lateinit var subCategorySpinner: Spinner
     private lateinit var categories: Array<String>
     private lateinit var categoryAdapter: ArrayAdapter<String>
 
@@ -43,51 +47,71 @@ class UploadActivity : AppCompatActivity() {
         binding = ActivityUploadBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-//        Initialize variables:
+        // Initialize variables:
         categorySpinner = findViewById(R.id.category_spinner)
+        subCategorySpinner = findViewById(R.id.subcategory_spinner)
         categories = resources.getStringArray(R.array.categories)
-        categoryAdapter =
-            ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, categories)
-        categorySpinner.adapter = categoryAdapter
+
+        // subcategories. If Animal, show relevant sub. If plant, show others. Etc.
 
         saveButton = findViewById(R.id.save_button)
         cancelButton = findViewById(R.id.cancel_button)
         addImageButton = findViewById(R.id.add_image_button)
 
-//        Check Gallery Permission
+        // Check Gallery Permission
         checkCameraPermission()
 
         // database:
         firebaseAuth = FirebaseAuth.getInstance()
         storageRef = FirebaseStorage.getInstance().getReference(SLIDES_STORAGE)
         dbRef = FirebaseDatabase.getInstance().getReference(RT_SLIDES_DB)
+
+        val userEmail = firebaseAuth.currentUser?.email
+
         binding.saveButton.setOnClickListener {
 
-//            Upload slide information
-            val slideName = binding.slideName.text.toString()
-            val category = binding.categorySpinner.selectedItem.toString()
-            val comment = binding.slideDescription.text.toString()
-            var slide: SlideInfo
+            if (binding.slideName.text.isNullOrBlank() || imageUri == null || binding.categorySpinner.selectedItemPosition == 0) {
+                // Show an error popup
+                showToast("Error! Name, Category, and Image are REQUIRED to submit a slide.")
+            } else {
+                // Upload slide information
+                val slideName = binding.slideName.text.toString()
+                val category = binding.categorySpinner.selectedItem.toString()
+                val subCategory = binding.subcategorySpinner.selectedItem.toString()
+                val comment = binding.slideDescription.text.toString()
+                var slide: SlideInfo
 
-            imageUri?.let{
-                val imageId = dbRef.push().key!!
-                storageRef.child(imageId).putFile(it)
-                    .addOnSuccessListener{task ->
-                        task.metadata!!.reference!!.downloadUrl
-                            .addOnSuccessListener{
-                                val uri = it.toString()
-                                slide = SlideInfo(slideName, category, comment, uri)
+                imageUri?.let {
+                    val imageId = dbRef.push().key!!
+                    storageRef.child(imageId).putFile(it)
+                        .addOnSuccessListener { task ->
+                            task.metadata!!.reference!!.downloadUrl
+                                .addOnSuccessListener {
+                                    val uri = it.toString()
+                                    slide = SlideInfo(
+                                        slideName,
+                                        category,
+                                        subCategory,
+                                        comment,
+                                        userEmail,
+                                        uri
+                                    )
 
-//                                Add slide information to realtime database
-                                dbRef.child(imageId).setValue(slide)
-                                    .addOnCompleteListener {
-                                        Toast.makeText(this, "Uploaded successfully", Toast.LENGTH_LONG).show()
-                                    }
+                                    //  Add slide information to realtime database
+                                    dbRef.child(imageId).setValue(slide)
+                                        .addOnCompleteListener {
+                                            Toast.makeText(
+                                                this,
+                                                "Uploaded successfully",
+                                                Toast.LENGTH_LONG
+                                            ).show()
+                                        }
 
-                            }
-                    }
+                                }
+                        }
+                }
+                finish()
             }
-            finish()
         }
         cancelButton.setOnClickListener() {
             finish()
@@ -103,7 +127,21 @@ class UploadActivity : AppCompatActivity() {
         binding.addImageButton.setOnClickListener() {
             slideImage.launch("image/*")
         }
+    }
 
+    fun showToast(message: String) {
+        val inflater = layoutInflater
+        val layout: View = inflater.inflate(R.layout.toast_upload_slide, findViewById(R.id.toast_layout))
+
+        val toastText: TextView = layout.findViewById(R.id.toast_text)
+        toastText.text = message
+
+        with(Toast(applicationContext)) {
+            setGravity(Gravity.CENTER, 0, 0)
+            duration = Toast.LENGTH_SHORT
+            view = layout
+            show()
+        }
     }
 
     private fun checkCameraPermission() {

@@ -18,9 +18,14 @@
 
 <!--    Slide categories-->
     <string-array name="categories">
+        <item>Choose Category</item>
         <item>People</item>
         <item>Animals</item>
         <item>Plants</item>
         <item>Bacteria</item>
+    </string-array>
+
+    <string-array name="subcategories">
+        <item>N/A</item>
     </string-array>
 </resources>
