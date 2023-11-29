@@ -13,7 +13,7 @@ class SearchListAdapter(private val context: Context, private var historyList:Li
     }
 
     override fun getItem(position: Int): Any {
-        return historyList.get(position)
+        return historyList[position]
     }
 
     override fun getItemId(position: Int): Long {
