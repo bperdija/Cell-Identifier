@@ -62,7 +62,6 @@ class SearchResult : AppCompatActivity() {
                         }
                     }
                 }
-                println("Mandu slides count=${slides.size}")
                 val slidesCardAdapter = SlidesCardAdapter(slides)
                 binding.slideDisplay.adapter = slidesCardAdapter
             }
