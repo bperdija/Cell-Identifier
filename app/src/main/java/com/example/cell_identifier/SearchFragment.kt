@@ -1,5 +1,6 @@
 package com.example.cell_identifier
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -21,16 +22,12 @@ class SearchFragment:Fragment() {
     private lateinit var dbRef: DatabaseReference
     private lateinit var binding: FragmentSearchBinding
 
-    companion object {
-        const val DB_HISTORY = "SearchHistory"
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        dbRef = FirebaseDatabase.getInstance().getReference(DB_HISTORY)
+        dbRef = FirebaseDatabase.getInstance().getReference(Globals.DB_HISTORY)
         binding = FragmentSearchBinding.inflate(inflater, container, false)
         updateHistory()
         return binding.root
@@ -53,6 +50,7 @@ class SearchFragment:Fragment() {
                     dbRef.push().setValue(keyword)
                 }
                 binding.searchBar.setQuery("", false)
+                search(query!!)
                 return true
             }
 
@@ -61,9 +59,8 @@ class SearchFragment:Fragment() {
             }
         })
 
-
+//        Clear SearchHistory in Firebase RT database
         binding.buttonHistoryReset.setOnClickListener{
-//            The search history will reset.
             historyList.clear()
             dbRef.removeValue().addOnSuccessListener {
                 Toast.makeText(requireActivity(), "History Cleared", Toast.LENGTH_LONG).show()
@@ -87,13 +84,21 @@ class SearchFragment:Fragment() {
                         }
                     }
                 }
-                val historyAdapter = SearchListAdapter(requireActivity(), historyList)
+//                Reverse the historyList before passing so that the newest search is shown on the top
+                val historyAdapter = SearchListAdapter(requireActivity(), historyList.reversed())
                 historyListView.adapter = historyAdapter
             }
 
             override fun onCancelled(error: DatabaseError) {
             }
         })
+    }
+
+//    OPen a SearchResult activity to display the list of slides matching the query
+    private fun search(keyword:String){
+            val intent = Intent(context, SearchResult::class.java)
+            intent.putExtra(Globals.INTENT_SEARCH_KEY, keyword)
+            this.startActivity(intent)
     }
 
 //    Data class for search history

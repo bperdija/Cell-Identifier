@@ -1,12 +1,14 @@
 package com.example.cell_identifier
 
 import android.content.Context
+import android.content.Intent
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.TextView
 
 class SearchListAdapter(private val context: Context, private var historyList:List<String>):BaseAdapter() {
+
 
     override fun getCount(): Int {
         return historyList.count()
@@ -25,7 +27,14 @@ class SearchListAdapter(private val context: Context, private var historyList:Li
 
         val resultView = view.findViewById<TextView>(R.id.search_history_item)
         resultView.text = historyList[position]
-        println("Mandu: ${resultView.text}")
+
+//            Make each element in search history clickable
+//            Open a result activity - list of slides matching with the query
+        view.setOnClickListener(){
+            val intent = Intent(context, SearchResult::class.java)
+            intent.putExtra(Globals.INTENT_SEARCH_KEY, historyList[position])
+            context.startActivity(intent)
+        }
 
         return view
     }

@@ -10,7 +10,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/search_history_item"
-        android:text="temp string"
+        android:text="@string/temp_msg"
         android:textColor="@color/black"/>
-
 </LinearLayout>
