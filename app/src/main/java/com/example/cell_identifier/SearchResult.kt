@@ -2,9 +2,11 @@ package com.example.cell_identifier
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.view.Gravity
 import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.cell_identifier.databinding.ListOfSlidesBinding
 import com.google.firebase.database.DataSnapshot
@@ -23,6 +25,7 @@ class SearchResult : AppCompatActivity() {
     private lateinit var resultTitle: TextView
     private lateinit var slides: ArrayList<SlideInfo>
     private lateinit var keyword:String
+    private lateinit var noResultText: TextView
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,9 +37,18 @@ class SearchResult : AppCompatActivity() {
         storageRef = FirebaseStorage.getInstance().getReference(Globals.SLIDES_STORAGE)
         exitButton = findViewById(R.id.exit_button)
         resultTitle = findViewById(R.id.slide_display_title)
+
+//        Set "No Result" TextView
+        noResultText = TextView(this)
+        noResultText.isVisible = false
+        noResultText.text = "No Result"
+        noResultText.textSize = 18f
+        noResultText.gravity = Gravity.START
+        binding.root.addView(noResultText)
+
         slides = ArrayList()
         keyword = intent.getStringExtra(Globals.INTENT_SEARCH_KEY).toString()
-        this.resultTitle.text = "Result: $keyword"
+        this.resultTitle.text = "Search: $keyword"
         searchSlides()
 
         exitButton.setOnClickListener {
@@ -62,8 +74,14 @@ class SearchResult : AppCompatActivity() {
                         }
                     }
                 }
-                val slidesCardAdapter = SlidesCardAdapter(slides)
-                binding.slideDisplay.adapter = slidesCardAdapter
+                if(slides.isEmpty()){
+//                    "No result" text if no matches
+                    binding.slideDisplay.isVisible = false
+                    noResultText.isVisible = true
+                }else {
+                    val slidesCardAdapter = SlidesCardAdapter(slides)
+                    binding.slideDisplay.adapter = slidesCardAdapter
+                }
             }
 
             override fun onCancelled(error: DatabaseError) {
