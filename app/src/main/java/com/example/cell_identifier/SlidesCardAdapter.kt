@@ -21,7 +21,6 @@ class SlidesCardAdapter(private val slides: java.util.ArrayList<SlideInfo>): Rec
     @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: SlidesViewHolder, position: Int) {
         val currentItem = slides[position]
-        println("Mandu: Check $currentItem")
         holder.apply {
             binding.apply {
                 slideCardName.text = "Name: ${currentItem.slideName}"
