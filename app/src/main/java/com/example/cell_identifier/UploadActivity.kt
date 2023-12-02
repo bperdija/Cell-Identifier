@@ -76,10 +76,10 @@ class UploadActivity : AppCompatActivity() {
                 id: Long
             ) {
                 val category = categorySpinner.selectedItem
-                if(category == "People"){
-
-                }else if(category == "Animals"){
-
+                if(category == "Animals"){
+                    val arrayAdapter: ArrayAdapter<String> = ArrayAdapter(
+                        binding.root.context, android.R.layout.simple_spinner_item, Globals.SUBCAT_ANIMALS)
+                    subCategorySpinner.adapter = arrayAdapter
                 }else if(category == "Plants"){
                     val arrayAdapter: ArrayAdapter<String> = ArrayAdapter(
                         binding.root.context, android.R.layout.simple_spinner_item, Globals.SUBCAT_PLANTS
