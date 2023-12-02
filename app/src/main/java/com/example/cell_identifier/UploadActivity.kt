@@ -3,15 +3,17 @@ package com.example.cell_identifier
 import android.Manifest
 import android.content.pm.PackageManager
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Gravity
 import android.view.View
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.Spinner
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.example.cell_identifier.databinding.ActivityUploadBinding
@@ -20,6 +22,7 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
+
 
 @Suppress("DEPRECATION")
 class UploadActivity : AppCompatActivity() {
@@ -63,6 +66,39 @@ class UploadActivity : AppCompatActivity() {
 
         val userEmail = firebaseAuth.currentUser?.email
 
+        // Change the spinner entries:
+        // https://stackoverflow.com/questions/41809942/how-to-programatically-set-entries-of-spinner-in-android
+        binding.categorySpinner.onItemSelectedListener = object:AdapterView.OnItemSelectedListener{
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                val category = categorySpinner.selectedItem
+                if(category == "People"){
+
+                }else if(category == "Animals"){
+
+                }else if(category == "Plants"){
+                    val arrayAdapter: ArrayAdapter<String> = ArrayAdapter(
+                        binding.root.context, android.R.layout.simple_spinner_item, Globals.SUBCAT_PLANTS
+                    )
+                    subCategorySpinner.adapter = arrayAdapter
+
+                }else if(category == "Bacteria"){
+                    val arrayAdapter: ArrayAdapter<String> = ArrayAdapter(
+                        binding.root.context, android.R.layout.simple_spinner_item, Globals.SUBCAT_BACT
+                    )
+                    binding.subcategorySpinner.adapter = arrayAdapter
+                }
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+
+            }
+
+        }
         binding.saveButton.setOnClickListener {
 
             if (binding.slideName.text.isNullOrBlank() || imageUri == null || binding.categorySpinner.selectedItemPosition == 0) {
@@ -123,6 +159,7 @@ class UploadActivity : AppCompatActivity() {
             slideImage.launch("image/*")
         }
     }
+
 
     fun showToast(message: String) {
         val inflater = layoutInflater
