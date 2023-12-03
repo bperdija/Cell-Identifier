@@ -40,8 +40,8 @@ class ProfileFragment : Fragment() {
     private lateinit var saveButton: Button
     private lateinit var logoutButton: Button
 
-    private lateinit var fName: TextView
-    private lateinit var lName: TextView
+    //private lateinit var fName: TextView
+    //private lateinit var lName: TextView
 
     private lateinit var fullName: TextView
     private lateinit var email: TextView
@@ -118,11 +118,12 @@ class ProfileFragment : Fragment() {
             updateProfile(uid)
         }
 
-//        logoutButton.setOnClickListener {
-//            // logout
-//            val logoutIntent = Intent(this, WelcomeActivity::class.java)
-//            startActivity(logoutIntent)
-//        }
+        logoutButton.setOnClickListener {
+            // logout
+            FirebaseAuth.getInstance().signOut()
+            val logoutIntent = Intent(context, WelcomeActivity::class.java)
+            startActivity(logoutIntent)
+        }
 
 
         return view
