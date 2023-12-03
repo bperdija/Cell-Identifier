@@ -1,5 +1,6 @@
 package com.example.cell_identifier
 
+import android.content.Intent
 import android.os.Bundle
 import android.net.Uri
 import android.view.LayoutInflater
@@ -26,6 +27,8 @@ class ProfileFragment : Fragment() {
     private lateinit var imageUri: Uri
 
     private lateinit var saveButton: Button
+    private lateinit var logoutButton: Button
+
     private lateinit var fName: TextView
     private lateinit var lName: TextView
 
@@ -56,6 +59,7 @@ class ProfileFragment : Fragment() {
         year = view.findViewById(R.id.yearEt)
         field = view.findViewById(R.id.fieldEt)
         saveButton = view.findViewById(R.id.submit_button)
+        logoutButton = view.findViewById(R.id.logout_button)
 
         // Initialize Firebase Auth, Database, etc.
         auth = FirebaseAuth.getInstance()
@@ -69,11 +73,18 @@ class ProfileFragment : Fragment() {
             //updateProfile(uid)
         }
 
+//        logoutButton.setOnClickListener {
+//            // logout
+//            val logoutIntent = Intent(this, WelcomeActivity::class.java)
+//            startActivity(logoutIntent)
+//        }
+
         // Set default image URI
         //imageUri = Uri.parse("android.resource://${requireContext().packageName}/${R.drawable.ic_human}")
 
         return view
     }
+
 
     private fun getUserData() {
         databaseReference.child(uid).addValueEventListener(object: ValueEventListener {

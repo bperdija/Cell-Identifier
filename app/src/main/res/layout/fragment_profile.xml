@@ -168,5 +168,17 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/logout_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:background="@drawable/rounded_signupbutton"
+            android:textColor="#FFFFFF"
+            android:text="Logout"
+            app:layout_constraintTop_toBottomOf="@id/submit_button"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
