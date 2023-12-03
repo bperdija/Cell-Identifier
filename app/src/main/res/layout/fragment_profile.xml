@@ -11,6 +11,12 @@
         android:layout_height="wrap_content"
         tools:context=".ProfileFragment">
 
+        <ImageView
+            android:id="@+id/profile_image_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_person" />
+
         <!-- Full Name Field -->
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/fullNameLayout"

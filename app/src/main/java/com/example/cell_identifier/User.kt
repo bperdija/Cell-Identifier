@@ -9,5 +9,6 @@ data class User(
     var school: String = "",
     var role: String = "",
     var year: Int = 0,
-    var field: String = ""
+    var field: String = "",
+    var profilePictureUrl: String = ""
 )
