@@ -191,7 +191,7 @@ class ProfileFragment : Fragment() {
         val user = User(firstName, lastName, userEmail, userBio, userAge, userSchool, userRole, userYear, userField, "")
 
         if (uid != null) {
-            if (imageUri != null) {
+            if (this::imageUri.isInitialized) {
                 // If imageUri is not null, upload profile picture first
                 uploadProfilePic(uid, user)
             } else {
