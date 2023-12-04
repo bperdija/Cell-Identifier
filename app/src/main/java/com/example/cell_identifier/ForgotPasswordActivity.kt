@@ -1,5 +1,6 @@
 package com.example.cell_identifier
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
@@ -26,7 +27,6 @@ class ForgotPasswordActivity : AppCompatActivity() {
         resetBtn.setOnClickListener {
             val email = email.text.toString()
             if (email.isNotEmpty()) {
-                // Call your method to send a password reset email.
                 sendPasswordResetEmail(email)
             } else {
                 Toast.makeText(this, "Please enter your email", Toast.LENGTH_SHORT).show()
@@ -35,17 +35,19 @@ class ForgotPasswordActivity : AppCompatActivity() {
     }
 
     private fun sendPasswordResetEmail(email: String) {
-         FirebaseAuth.getInstance().sendPasswordResetEmail(email)
+        FirebaseAuth.getInstance().sendPasswordResetEmail(email)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     Toast.makeText(this, "Reset email sent", Toast.LENGTH_SHORT).show()
+
+                    val intent = Intent(this, SignInActivity::class.java)
+                    startActivity(intent)
+                    finish()
                 } else {
                     Toast.makeText(this, "Failed to send reset email", Toast.LENGTH_SHORT).show()
                 }
             }
-
-        // This is a placeholder for your implementation.
-        Toast.makeText(this, "Reset email sent to: $email", Toast.LENGTH_SHORT).show()
     }
+
 }
 
