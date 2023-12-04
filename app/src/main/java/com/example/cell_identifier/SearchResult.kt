@@ -69,6 +69,7 @@ class SearchResult : AppCompatActivity() {
                         if (slide?.slideComment!!.lowercase().contains(keyword.lowercase())
                             || slide.slideName!!.lowercase().contains(keyword.lowercase())
                             || slide.category!!.lowercase().contains(keyword.lowercase())
+                            || slide.subCategory!!.lowercase().contains(keyword.lowercase())
                         ) {
                             slides.add(slide)
                         }

@@ -29,7 +29,6 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -43,6 +42,14 @@
             android:name=".SignInActivity"
             android:exported="true" />
         <activity android:name=".SearchResult"
+            android:exported="false"/>
+        <activity android:name=".categories.CategoryPlants"
+            android:exported="false"/>
+        <activity android:name=".categories.CategoryAnimals"
+            android:exported="false"/>
+        <activity android:name=".categories.CategoryBacteria"
+            android:exported="false"/>
+        <activity android:name=".categories.CategoryPeople"
             android:exported="false"/>
     </application>
 

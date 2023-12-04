@@ -12,4 +12,8 @@
     <color name="tertiaryBlue">#003BAA</color>
     <color name="lightGray">#E8E8E8</color>
     <color name="disabled_text_color">#CCCCCC</color>
+    <color name="gum_leaf">#A9C7AC</color>
+    <color name="bay_leaf">#82AC85</color>
+    <color name="edge_water">#BFD8C4</color>
+
 </resources>
