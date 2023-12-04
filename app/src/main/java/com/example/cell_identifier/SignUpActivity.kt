@@ -38,11 +38,19 @@ class SignUpActivity : AppCompatActivity() {
             val firstName = binding.firstNameEt.text.toString()
             val lastName = binding.lastNameEt.text.toString()
             val bio = binding.bioEt.text.toString()
-            val age = binding.ageEt.text.toString().toIntOrNull() ?: 0
+            val ageText = binding.ageEt.text.toString()
             val school = binding.schoolEt.text.toString()
             val role = binding.roleEt.text.toString()
-            val year = binding.yearEt.text.toString().toIntOrNull() ?: 0
+            val yearText = binding.yearEt.text.toString()
             val field = binding.fieldEt.text.toString()
+
+            if (email.isEmpty() || pass.isEmpty() || confirmPass.isEmpty() || firstName.isEmpty() || lastName.isEmpty() || bio.isEmpty() || ageText.isEmpty() || school.isEmpty() || role.isEmpty() || yearText.isEmpty() || field.isEmpty()) {
+                Toast.makeText(this, "Please fill in all the fields", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            val age = ageText.toIntOrNull() ?: 0
+            val year = yearText.toIntOrNull() ?: 0
 
             if (pass == confirmPass) {
 
