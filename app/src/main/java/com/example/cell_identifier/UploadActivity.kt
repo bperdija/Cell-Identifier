@@ -1,6 +1,7 @@
 package com.example.cell_identifier
 
 import android.Manifest
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
@@ -76,38 +77,39 @@ class UploadActivity : AppCompatActivity() {
                 val comment = binding.slideDescription.text.toString()
                 var slide: SlideInfo
 
-                imageUri?.let {
-                    val imageId = dbRef.push().key!!
-                    storageRef.child(imageId).putFile(it)
-                        .addOnSuccessListener { task ->
-                            task.metadata!!.reference!!.downloadUrl
-                                .addOnSuccessListener {
-                                    val uri = it.toString()
-                                    slide = SlideInfo(
-                                        slideName,
-                                        category,
-                                        subCategory,
-                                        comment,
-                                        userEmail,
-                                        uri
-                                    )
-
-                                    //  Add slide information to realtime database
-                                    dbRef.child(imageId).setValue(slide)
-                                        .addOnCompleteListener {
-                                            Toast.makeText(
-                                                this,
-                                                "Uploaded successfully",
-                                                Toast.LENGTH_LONG
-                                            ).show()
-                                        }
-
-                                }
-                        }
-                }
-                finish()
+//                imageUri?.let {
+//                    val imageId = dbRef.push().key!!
+//                    storageRef.child(imageId).putFile(it)
+//                        .addOnSuccessListener { task ->
+//                            task.metadata!!.reference!!.downloadUrl
+//                                .addOnSuccessListener {
+//                                    val uri = it.toString()
+//                                    slide = SlideInfo(
+//                                        slideName,
+//                                        category,
+//                                        subCategory,
+//                                        comment,
+//                                        userEmail,
+//                                        uri
+//                                    )
+//
+//                                    //  Add slide information to realtime database
+//                                    dbRef.child(imageId).setValue(slide)
+//                                        .addOnCompleteListener {
+//                                            Toast.makeText(
+//                                                this,
+//                                                "Uploaded successfully",
+//                                                Toast.LENGTH_LONG
+//                                            ).show()
+//                                        }
+//
+//                                }
+//                        }
+//                }
+                startAnnotationActivity()
             }
         }
+
         cancelButton.setOnClickListener() {
             finish()
         }
@@ -163,5 +165,18 @@ class UploadActivity : AppCompatActivity() {
                 ), 0
             )
         }
+    }
+
+    private fun startAnnotationActivity() {
+        val intent = Intent(this, AnnotationActivity::class.java).apply {
+            // Pass data using putExtra
+            putExtra("slideName", binding.slideName.text.toString())
+            putExtra("category", binding.categorySpinner.selectedItem.toString())
+            putExtra("subCategory", binding.subcategorySpinner.selectedItem.toString())
+            putExtra("comment", binding.slideDescription.text.toString())
+            putExtra("imageUri", imageUri?.toString())
+        }
+        startActivity(intent)
+        finish()
     }
 }
