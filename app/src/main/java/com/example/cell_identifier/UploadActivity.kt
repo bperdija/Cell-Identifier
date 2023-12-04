@@ -7,7 +7,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Gravity
 import android.view.View
-import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.Spinner
 import android.widget.TextView
@@ -22,6 +21,7 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 
+@Suppress("DEPRECATION")
 class UploadActivity : AppCompatActivity() {
     private lateinit var saveButton: Button
     private lateinit var cancelButton: Button
@@ -29,7 +29,6 @@ class UploadActivity : AppCompatActivity() {
     private lateinit var categorySpinner: Spinner
     private lateinit var subCategorySpinner: Spinner
     private lateinit var categories: Array<String>
-    private lateinit var categoryAdapter: ArrayAdapter<String>
 
     //    Image uploading
     private lateinit var binding: ActivityUploadBinding
@@ -38,10 +37,6 @@ class UploadActivity : AppCompatActivity() {
     private lateinit var storageRef: StorageReference
     private var imageUri: Uri? = null
 
-    companion object{
-        val SLIDES_STORAGE = "Slides"
-        val RT_SLIDES_DB = "SlidesInfo"
-    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityUploadBinding.inflate(layoutInflater)
@@ -63,8 +58,8 @@ class UploadActivity : AppCompatActivity() {
 
         // database:
         firebaseAuth = FirebaseAuth.getInstance()
-        storageRef = FirebaseStorage.getInstance().getReference(SLIDES_STORAGE)
-        dbRef = FirebaseDatabase.getInstance().getReference(RT_SLIDES_DB)
+        storageRef = FirebaseStorage.getInstance().getReference(Globals.SLIDES_STORAGE)
+        dbRef = FirebaseDatabase.getInstance().getReference(Globals.RT_SLIDES_DB)
 
         val userEmail = firebaseAuth.currentUser?.email
 

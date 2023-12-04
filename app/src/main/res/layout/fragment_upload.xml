@@ -17,7 +17,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:text="Upload Slides"
+        android:text="@string/upload_slides"
         android:textSize="30sp"
         android:textStyle="bold"
         android:layout_marginTop="25dp"
@@ -51,7 +51,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="3dp"
-                android:text="Submit New Slides"
+                android:text="@string/submit_new_slides"
                 android:textSize="20sp"
                 android:textColor="#000000"
                 android:textStyle="bold"/>
@@ -60,7 +60,7 @@
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="3dp"
-                android:text="Slides will undergo review. If approved, they will enter our global database for anyone to view!"
+                android:text="@string/upload_review_reminder"
                 android:textSize="14sp"
                 android:textColor="#000000"
                 android:gravity="center_horizontal"/>
@@ -75,7 +75,7 @@
         android:layout_marginTop="3dp"
         android:layout_marginStart="15dp"
         android:layout_marginBottom="10dp"
-        android:text="Uploaded by you:"
+        android:text="@string/string_user_upload"
         android:textSize="20sp"
         android:textColor="#000000"
         android:textStyle="bold"/>
@@ -83,13 +83,6 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/slides_recycler_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/uploadedByYouText"/>
+        android:layout_height="match_parent" />
     </LinearLayout>
-<!--    <Button-->
-<!--        android:id="@+id/btn_upload"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_alignParentBottom="true"-->
-<!--        android:text="@string/new_slide"/>-->
 </RelativeLayout>

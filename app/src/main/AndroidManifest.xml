@@ -45,7 +45,8 @@
         <activity
             android:name=".ForgotPasswordActivity"
             android:exported="true" />
-
+        <activity android:name=".SearchResult"
+            android:exported="false" />
     </application>
 
 </manifest>

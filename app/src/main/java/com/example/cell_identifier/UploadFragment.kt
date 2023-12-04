@@ -2,13 +2,10 @@ package com.example.cell_identifier
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.LinearLayout
-import android.widget.RelativeLayout
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.cell_identifier.databinding.FragmentUploadBinding
@@ -31,7 +28,7 @@ class UploadFragment:Fragment() {
         savedInstanceState: Bundle?
     ): View {
 
-        dbRef = FirebaseDatabase.getInstance().getReference(UploadActivity.RT_SLIDES_DB)
+        dbRef = FirebaseDatabase.getInstance().getReference(Globals.RT_SLIDES_DB)
         slides = arrayListOf()
         binding = FragmentUploadBinding.inflate(inflater, container, false)
         currentUserEmail = FirebaseAuth.getInstance().currentUser?.email ?: ""

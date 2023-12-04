@@ -9,14 +9,17 @@
     <string name="add_description">Describe your slide</string>
     <string name="description">Description:</string>
     <string name="name">Name:</string>
-
-<!--    Buttons-->
     <string name="save">SAVE</string>
     <string name="cancel">CANCEL</string>
     <string name="add_image">ADD IMAGE</string>
     <string name="new_slide">NEW SLIDE</string>
+    <string name="temp_msg">Temp Title</string>
+    <string name="string_user_upload">Uploaded by you:</string>
+    <string name="upload_review_reminder">Slides will undergo review. If approved, they will enter our global database for anyone to view!</string>
+    <string name="submit_new_slides">Submit New Slides</string>
+    <string name="upload_slides">Upload Slides</string>
 
-<!--    Slide categories-->
+    <!--    Slide categories-->
     <string-array name="categories">
         <item>Choose Category</item>
         <item>People</item>
