@@ -88,7 +88,7 @@ class UploadActivity : AppCompatActivity() {
 
                 }else if(category == "Bacteria"){
                     val arrayAdapter: ArrayAdapter<String> = ArrayAdapter(
-                        binding.root.context, android.R.layout.simple_spinner_item, Globals.SUBCAT_BACT
+                        binding.root.context, android.R.layout.simple_spinner_item, Globals.SUBCAT_BACTERIA
                     )
                     binding.subcategorySpinner.adapter = arrayAdapter
                 }

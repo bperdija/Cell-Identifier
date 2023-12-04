@@ -1,13 +1,11 @@
 package com.example.cell_identifier
 
-import android.media.Image
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.EditText
-import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import androidx.fragment.app.Fragment
@@ -15,6 +13,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cell_identifier.List_Slides.RecommendedAdapter
 import com.example.cell_identifier.List_Slides.RecommendedSlide
+import com.example.cell_identifier.categories.CategoryAnimals
+import com.example.cell_identifier.categories.CategoryBacteria
+import com.example.cell_identifier.categories.CategoryPeople
+import com.example.cell_identifier.categories.CategoryPlants
 
 class HomeFragment : Fragment() {
     private lateinit var recommendedRecyclerView: RecyclerView
@@ -44,33 +46,33 @@ class HomeFragment : Fragment() {
             LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         recommendedRecyclerView.adapter = recommendedAdapter
 
-
-        view.findViewById<EditText>(R.id.searchEditText).setOnClickListener {
-            Log.d("HomeFragment", "Search EditText Clicked")
-        }
-
         view.findViewById<RelativeLayout>(R.id.slideOfDayItem).setOnClickListener {
             Log.d("HomeFragment", "Slide of the Day Item Clicked")
         }
 
-        view.findViewById<ImageView>(R.id.categoryMenuIcon).setOnClickListener {
-            Log.d("HomeFragment", "Category Menu Icon Clicked")
-        }
-
         view.findViewById<LinearLayout>(R.id.peopleCircle).setOnClickListener {
             Log.d("HomeFragment", "People Circle Clicked")
+            val intent = Intent(this.context, CategoryPeople::class.java)
+            startActivity(intent)
         }
 
         view.findViewById<LinearLayout>(R.id.animalCircle).setOnClickListener {
             Log.d("HomeFragment", "Animal Circle Clicked")
+            val intent = Intent(this.context, CategoryAnimals::class.java)
+            startActivity(intent)
         }
 
         view.findViewById<LinearLayout>(R.id.plantCircle).setOnClickListener {
             Log.d("HomeFragment", "Plant Circle Clicked")
+            val intent = Intent(this.context, CategoryPlants::class.java)
+            startActivity(intent)
         }
+
 
         view.findViewById<LinearLayout>(R.id.bacteriaCircle).setOnClickListener {
             Log.d("HomeFragment", "Bacteria Circle Clicked")
+            val intent = Intent(this.context, CategoryBacteria::class.java)
+            startActivity(intent)
         }
 
         return view
