@@ -1,9 +1,12 @@
 package com.example.cell_identifier.categories
 
+import android.graphics.Rect
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.cell_identifier.Globals
 import com.example.cell_identifier.SlideInfo
 import com.example.cell_identifier.SlidesCardAdapter
@@ -103,8 +106,22 @@ class CategoryAnimals:AppCompatActivity() {
     private fun viewUpdate(){
         if(switchOn){
             binding.animalsRv.layoutManager = GridLayoutManager(this,3)
+            binding.animalsRv.clipChildren = false
+            binding.animalsRv.clipToPadding = false
+            binding.animalsRv.addItemDecoration(object: RecyclerView.ItemDecoration(){
+                override fun getItemOffsets(
+                    outRect: Rect,
+                    view: View,
+                    parent: RecyclerView,
+                    state: RecyclerView.State
+                ) {
+                    super.getItemOffsets(outRect, view, parent, state)
+                    outRect.set(10,20,10,20)
+                }
+            })
             val slideAdapter = SlidesGridAdapter(slides)
             binding.animalsRv.adapter = slideAdapter
+
         }else{
             binding.animalsRv.layoutManager = LinearLayoutManager(this)
             val slideAdapter = SlidesCardAdapter(slides)

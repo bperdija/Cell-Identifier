@@ -1,9 +1,12 @@
 package com.example.cell_identifier.categories
 
+import android.graphics.Rect
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.cell_identifier.Globals
 import com.example.cell_identifier.SlideInfo
 import com.example.cell_identifier.SlidesCardAdapter
@@ -60,7 +63,6 @@ class CategoryPeople:AppCompatActivity() {
                         }
                     }
                 }
-                println("Mandu Debugging: slidesize=${slides.size}")
             }
             override fun onCancelled(error: DatabaseError) {
             }
@@ -70,6 +72,19 @@ class CategoryPeople:AppCompatActivity() {
     private fun viewUpdate(){
         if(switchOn){
             binding.peopleRv.layoutManager = GridLayoutManager(this,3)
+            binding.peopleRv.clipChildren = false
+            binding.peopleRv.clipToPadding = false
+            binding.peopleRv.addItemDecoration(object: RecyclerView.ItemDecoration(){
+                override fun getItemOffsets(
+                    outRect: Rect,
+                    view: View,
+                    parent: RecyclerView,
+                    state: RecyclerView.State
+                ) {
+                    super.getItemOffsets(outRect, view, parent, state)
+                    outRect.set(10,20,10,20)
+                }
+            })
             val slideAdapter = SlidesGridAdapter(slides)
             binding.peopleRv.adapter = slideAdapter
         }else{
