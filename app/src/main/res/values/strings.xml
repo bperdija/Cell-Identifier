@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">Cell_Identifier</string>
     <string name="search_hist">History</string>
     <string name="categories">Categories</string>
@@ -10,7 +10,7 @@
     <string name="description">Description:</string>
     <string name="name">Name:</string>
     <string name="save">SAVE</string>
-    <string name="cancel">CANCEL</string>
+    <string name="cancel" tools:ignore="ButtonCase">CANCEL</string>
     <string name="add_image">ADD IMAGE</string>
     <string name="new_slide">NEW SLIDE</string>
     <string name="temp_msg">Temp Title</string>
@@ -18,6 +18,35 @@
     <string name="upload_review_reminder">Slides will undergo review. If approved, they will enter our global database for anyone to view!</string>
     <string name="submit_new_slides">Submit New Slides</string>
     <string name="upload_slides">Upload Slides</string>
+    <string name="animals">Animals</string>
+    <string name="birds">Birds</string>
+    <string name="reptiles">Reptiles</string>
+    <string name="fish">Fish</string>
+    <string name="amphibians">Amphibians</string>
+    <string name="invertebrate">Invertebrate</string>
+    <string name="others">Others</string>
+    <string name="mammals">Mammals</string>
+    <string name="grid">Grid View</string>
+    <string name="list">List View</string>
+    <string name="bacteria">Bacteria</string>
+    <string name="cocci">Cocci</string>
+    <string name="bacilli">Bacilli</string>
+    <string name="spirals">Spirals</string>
+    <string name="people">People</string>
+    <string name="plants">Plants</string>
+    <string name="mosses">Mosses</string>
+    <string name="ferns">Ferns</string>
+    <string name="gymnosperms">Gymnosperms</string>
+    <string name="angiosperms">Angiosperms</string>
+    <string name="gridview_item">gridview item</string>
+    <string name="back_button">Back button</string>
+    <string name="recommended">Recommended</string>
+    <string name="welcome">Welcome!</string>
+    <string name="slide_of_the_day">Slide of the Day</string>
+    <string name="human_liver_tissue">Human Liver Tissue</string>
+    <string name="cell">Cell</string>
+    <string name="sample_description">Your liver processes blood, breaking down the nutrients and chemicals ...</string>
+    <string name="sample_slide_number">Slide: #145</string>
 
     <!--    Slide categories-->
     <string-array name="categories">
