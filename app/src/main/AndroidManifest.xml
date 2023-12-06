@@ -46,7 +46,8 @@
             android:exported="true" />
         <activity android:name=".SearchResult"
             android:exported="false" />
-            android:exported="false"/>
+        <activity android:name=".SlideViewActivity"
+            android:exported="false" />
         <activity android:name=".categories.CategoryPlants"
             android:exported="false"/>
         <activity android:name=".categories.CategoryAnimals"
