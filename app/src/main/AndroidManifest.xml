@@ -41,7 +41,11 @@
         <activity
             android:name=".SignInActivity"
             android:exported="true" />
+        <activity
+            android:name=".ForgotPasswordActivity"
+            android:exported="true" />
         <activity android:name=".SearchResult"
+            android:exported="false" />
             android:exported="false"/>
         <activity android:name=".categories.CategoryPlants"
             android:exported="false"/>
